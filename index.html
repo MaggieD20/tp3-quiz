@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title> Questionnaire</title>
+
+    <!-- Intégrer les feuilles de style -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- importer la police du texte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+
+    <!-- intégrer le code javascript -->
+    <script type="text/javascript" src="js/questions.js" defer></script>
+    <script type="text/javascript" src="js/index.js" defer></script>
+</head>
+
+<body>
+    <!-- faire une division pour le curseur -->
+    <div class="curseur"></div>
+
+    <!-- zone d'introduction du quiz -->
+    <header>
+        <!-- le titre -->
+        <h1 class="anim-intro">Le Quiz LGBTQIA+</h1>
+
+        <!-- division pour un dementi -->
+        <div class="dementi"></div>
+
+        <!-- division contenant des divisions pour faire une animation en css -->
+        <div class="conteneur">
+            <div class="ligne un"></div>
+            <div class="ligne deux"></div>
+            <div class="ligne trois"></div>
+            <div class="ligne quatre"></div>
+            <div class="ligne cinq"></div>
+            <div class="ligne six"></div>
+            <div class="ligne sept"></div>
+            <div class="ligne huit"></div>
+            <div class="ligne neuf"></div>
+            <div class="ligne dix"></div>
+        </div>
+
+        <!-- instruction pour commencer le quiz -->
+        <div class="pied"></div>
+    </header>
+
+    <!-- zone du quiz -->
+    <main class="quiz">
+        <!-- section dans laquelle est contenue les questions et les réponses -->
+        <section>
+            <!-- division contenant la question -->
+            <div class="question-phrase"></div>
+
+            <!-- division contenant les choix de réponses -->
+            <div class="reponses"></div>
+        </section>
+    </main>
+
+    <!-- zone de fin de quiz -->
+    <main class="zoneScore">
+        <!-- division contenant le texte de fin de jeu -->
+        <div class="texteFin"></div>
+
+        <!-- texte pour faire un bouton rejouer -->
+        <p class="rejouer">rejouer</p>
+    </main>
+
+
+</body>
+
+</html>

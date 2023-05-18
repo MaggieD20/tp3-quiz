@@ -1,0 +1,681 @@
+/* réinitialiser les valeurs de tous les élément et des pseudos éléments before et after*/
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+
+/*****************************************BASES**************************************/
+:root {
+    /* création de variables pour les couleurs les plus utilisées */
+    --rose: #FFAFC7;
+    --bleu-pale: #73D7EE;
+    --rouge: #E50000;
+    --orange: #FF8D00;
+    --jaune: #FFEE00;
+    --vert: #028121;
+    --bleu-fonce: #004Cff;
+    --mauve: #760088;
+
+    /* variable pour la position du curseur de la souris */
+    --mouse-x: 0px;
+    --mouse-y: 0px;
+}
+
+/* mettre la même police de caractère sur tous les textes et faire disparêtre le curseur */
+body {
+    font-family: 'Darumadrop One', cursive;
+    cursor: none;
+}
+
+/* mettre une transition sur les textes pour le chagement de taille de la page */
+h2,
+p {
+    transition: font-size 1s;
+}
+
+h2,
+h4 {
+    /* ajouter du padding aux textes */
+    padding: 0.5rem;
+}
+
+
+
+/*********************CURSEUR PERSONNALISÉ*******************/
+/* faire un curseur personnalisé */
+.curseur {
+    /* position fixe pour indépendance de l'élément */
+    position: fixed;
+
+    /* caractéristiques esthétiques */
+    height: 1rem;
+    width: 2.5rem;
+    background-color: var(--vert);
+    border-top: 0.5rem solid var(--jaune);
+
+    /* calculer la position du curseur */
+    top: calc(var(--mouse-y) - 0.25rem);
+    left: calc(var(--mouse-x) - 1.25rem);
+
+    /*empêché d'être sélectionnéet mettre le curseur devant les éléments */
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* élément pour le style du curseur */
+.curseur::after {
+    /* mettre du contenu et mettre sa position par rapport au parent */
+    content: "";
+    position: absolute;
+
+    /* caractéristiques esthétiques */
+    height: 1rem;
+    width: 2.5rem;
+    background-color: var(--mauve);
+    border-top: 0.5rem solid var(--bleu-fonce);
+
+    /* déplacer l'élément au dessus du parent */
+    translate: 0 0.5rem;
+}
+
+/* élément pour le style du curseur */
+.curseur::before {
+    /* mette du contenu et mettre sa position par rapport au parent */
+    content: "";
+    position: absolute;
+
+    /* caractéristiques esthétiques */
+    height: 1rem;
+    width: 2.5rem;
+    background-color: var(--orange);
+    border-top: 0.5rem solid var(--rouge);
+
+    /* déplacer l'élément au dessus du parent */
+    translate: 0 -1.4rem;
+}
+
+
+/****************************************INTRO*************************************/
+
+header {
+    /* l'élément prend la hauteur de la fenêtre*/
+    height: 100vh;
+
+    /* placer les enfants en colonne centrées dans la page*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* aligner le texte au milieu */
+    text-align: center;
+}
+
+/* titre animé de la section */
+.anim-intro {
+    /* taille du texte */
+    font-size: 3rem;
+
+    /* affecter les deux animations au titre pour qu'il se déplace et change de couleur */
+    animation: deplacement 5s forwards, intro 5s alternate infinite;
+
+    /* transition sur la taille des caractères */
+    transition: font-size 1s;
+}
+
+.dementi,
+.pied {
+    /* cacher les éléments et mettre une transition sur leur opacité */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* ligne de texte en dessous du titre */
+.dementi {
+    /* mettre du padding */
+    padding: 1rem;
+    width: 100vw;
+    /* mettre une ombre */
+    box-shadow: 0.5px 6px 5px 2px rgb(218, 217, 217);
+    /* mettre en avant */
+    z-index: 1;
+}
+
+/*****FAIRE DES LIGNES QUI SERONT ANIMÉES*****/
+.conteneur {
+    /* cacher l'élément */
+    opacity: 0;
+
+    /* donner une taille */
+    height: 70vh;
+
+    /* placer les enfants en rangée */
+    display: flex;
+    flex-direction: row;
+
+    /* transition sur l'opacité */
+    transition: opacity 1s;
+}
+
+div .ligne {
+    /* donner une forme aux division */
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0 0 50% 50%;
+
+    /* les placer derrière les autres éléments */
+    z-index: -10;
+
+    /* transition sur la hauteur et la largeur des divisions*/
+    transition: height 2s, width 1s;
+}
+
+/****** mettre les lignes de différentes couleurs et changer la hauteur qu'elles prendront *******/
+.un {
+    --hauteur: 17vh;
+    background-color: var(--rose);
+}
+
+.deux {
+    --hauteur: 10vh;
+    background-color: var(--bleu-pale);
+}
+
+.trois {
+    --hauteur: 26vh;
+    background-color: #613915;
+}
+
+.quatre {
+    --hauteur: 34vh;
+    background-color: black;
+}
+
+.cinq {
+    --hauteur: 13vh;
+    background-color: var(--rouge);
+}
+
+.six {
+    --hauteur: 20vh;
+    background-color: var(--orange);
+}
+
+.sept {
+    --hauteur: 50vh;
+    background-color: var(--jaune);
+}
+
+.huit {
+    --hauteur: 30vh;
+    background-color: var(--vert);
+}
+
+.neuf {
+    --hauteur: 40vh;
+    background-color: var(--bleu-fonce);
+}
+
+.dix {
+    --hauteur: 28vh;
+    background-color: var(--mauve);
+}
+
+/* si le conteneur est survolé, donner aux divisions la hauteur prédéfinie */
+.conteneur:hover>.ligne {
+    height: var(--hauteur);
+}
+
+.pied {
+    /* placer le pied de page dans le bas de la page */
+    position: absolute;
+    bottom: 4rem;
+}
+
+.pied::before {
+    /* créer et placer l'élément */
+    content: "";
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    border-top: 1px solid var(--rouge);
+
+    /* mettre une transition sur sa position */
+    transition: left 1s, right 1s;
+}
+
+/* modifier la position de l'élément before si le pied de page est survolé */
+.pied:hover::before {
+    left: 10%;
+    right: 10%;
+}
+
+
+/****************************************QUIZ*************************************/
+.quiz {
+    /* définir la grosseur de la zone et la placer au centre de la page */
+    height: 100vh;
+    display: none;
+    /* cacher la zone pour le moment*/
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+section {
+    /* définir la grosseur de la zone et la placer au centre de la page */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+/***********************QUESTIONS***************************/
+.question-phrase {
+    /* changer la taile du texte */
+    font-size: 2rem;
+
+    /* mettre une transition sur l'ombre du texte, la grosseur et la taille du texte */
+    transition: text-shadow 1s, scale 1s, font-size 1s;
+}
+
+.question-phrase:hover {
+    /* changer l'ombre du texte et sa taille */
+    text-shadow: -0.5rem 1px 10px var(--mauve);
+    scale: 1.2;
+}
+
+.reponses {
+    /* définir la taille de la zone de des réponses */
+    /* aligner son contenu au centre avec un espace entre les éléments*/
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.choix {
+    /* donner une position à l'élément */
+    position: relative;
+
+    /* mettre du padding */
+    padding: 2rem;
+
+    /* définir la couleur du fond et de la bordure */
+    background-color: var(--bleu-pale);
+    border: 5px solid var(--bleu-fonce);
+
+    /* mettre une transition sur la taille du texte et sur la largeur et la hauteur du contenu */
+    transition: font-size 1s, width 1s, height 1s;
+}
+
+.choix::after {
+    /* mettre du contenu et le placer par rapport au parent */
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    /* la couleur du fond */
+    background: linear-gradient(90deg, rgba(229, 0, 0, 1) 0%, rgba(255, 141, 0, 1) 15%, rgba(255, 238, 0, 1) 32%, rgba(2, 129, 33, 1) 51%, rgba(2, 129, 33, 1) 51%, rgba(0, 76, 255, 1) 72%, rgba(118, 0, 136, 1) 91%);
+
+    /* placer derrière les éléments */
+    z-index: -1;
+
+    /* mettre une transition sur les transformations */
+    transition: transform 1s;
+}
+
+.choix:hover::after {
+    /* modifier la taille en X et en Y  du ::after si le choix est survolé*/
+    transform: scaleX(1.2) scaleY(1.7);
+}
+
+.bonne-rep {
+    /* mettre l'animation de bonne réponse */
+    animation: bonne-reponse 1s;
+}
+
+.mauvaise-rep {
+    /* mettre l'animtaion de mauvaise réponse */
+    animation: mauvaise-reponse 1s;
+}
+
+
+/****************************************ZONE DE FIN*************************************/
+.zoneScore {
+    /* cacher la zone et placer les éléments de la zone */
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* faire prendre la hauteur de la fenêtre */
+    height: 100vh;
+
+    /* mettre le fon en dégrader et le crossir pour mettre une animation */
+    /*fait avec l'aide de https://codepen.io/P1N2O/pen/pyBNzX*/
+    background: linear-gradient(143deg, #e50000, #ff8d00, #ffee00, #028121, #004cff, #760088);
+    background-size: 500% 500%;
+
+    /* mettre l'animation pour bouger le fond */
+    animation: couleurs-fond 30s ease infinite alternate;
+}
+
+.texteFin {
+    /* placer les texte de fin */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.rejouer {
+    /* placer le bouton pour rejouer */
+    position: fixed;
+    top: 60%;
+
+    /* mettre du padding */
+    padding: 0.5rem;
+
+    /* donner une couleur de fond et une bordure */
+    background-color: var(--bleu-pale);
+    border: 5px solid black;
+}
+
+.rejouer::after {
+    /* mettre du contenu et le placer par rapport au parent */
+    content: "";
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    right: -3px;
+    left: -3px;
+
+    /* mettre une bordure */
+    border: 5px solid black;
+
+    /* mettre une transition sur les propriétés de grosseur et de rotation */
+    transition: scale 1s, rotate 1s;
+}
+
+.rejouer:hover::after {
+
+    /* faire grandir et tourner l'élément ::after lorsque rejouer est survolé*/
+    scale: 1.5;
+    rotate: 12.25deg;
+}
+
+
+/**************************************DIFFÉRENTES TAILLES D'ÉCRANS******************************/
+/* disposition pour les écrans plus grands ou égaux à 800px */
+@media screen and (min-width: 800px) {
+
+    p {
+        /* changer la taille du texte */
+        font-size: 1.25rem;
+    }
+
+    h2 {
+        /* changer la taille du texte */
+        font-size: 1.75rem;
+    }
+
+    /********** ZONE D'INTRODUCTION *********/
+    .anim-intro {
+        /* changer la taille du texte */
+        font-size: 4rem;
+    }
+
+    .dementi {
+        /* changer l'ombre */
+        box-shadow: 0.5px 6px 5px 2px rgb(190, 190, 190);
+    }
+
+    div .ligne {
+        /* changer la taille des lignes */
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .pied::before {
+        /* changer la taille et la position de l'élément */
+        left: 20%;
+        right: 20%;
+        border-top: 2.5px solid red;
+    }
+
+    /********** ZONE DE QUIZ *********/
+    .question-phrase {
+        /* changer la taille du texte */
+        font-size: 2.25rem;
+    }
+
+    .choix {
+        /* changer la taille du texte */
+        font-size: 1.25rem;
+
+        /* changer la couleur du fond et de la bordure */
+        background-color: var(--rose);
+        border: 5px solid var(--mauve);
+    }
+
+    /********** ZONE DE FIN DE QUIZ *********/
+    .rejouer {
+        /* changer la couleur du bouton */
+        background-color: var(--rose);
+    }
+}
+
+/* disposition pour les écrans plus grands ou égaux à 1180px */
+@media screen and (min-width: 1180px) {
+
+    p {
+        /* changer la taille du texte */
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        /* changer la taille du texte */
+        font-size: 2rem;
+    }
+
+    /********** ZONE D'INTRODUCTION *********/
+    .anim-intro {
+        /* changer la taille du texte */
+        font-size: 5rem;
+    }
+
+    .dementi {
+        /* changer l'ombre */
+        box-shadow: 0.5px 6px 5px 2px rgb(138, 138, 138);
+    }
+
+    .pied::before {
+        /* changer la taille et la position de l'élément */
+        left: 15%;
+        right: 15%;
+        border-top: 3.5px solid red;
+    }
+
+    /********** ZONE DE QUIZ *********/
+    .question-phrase {
+        /* changer la taille du texte */
+        font-size: 2.5rem;
+    }
+
+    .reponses {
+        /* changer la taille du conteneur et la disposition des éléments */
+        width: 80vw;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .choix {
+        /* changer la taille du choix de réponse et de son texte */
+        width: 20vw;
+        height: 30vh;
+        padding-top: 7.5rem;
+        font-size: 1.5rem;
+
+        /* changer la couleur du fond et de la bordure */
+        background-color: var(--jaune);
+        border: 5px solid var(--orange);
+    }
+
+    /* changer la direction du dégradé */
+    .choix::after {
+        background: linear-gradient(0, rgba(229, 0, 0, 1) 0%, rgba(255, 141, 0, 1) 15%, rgba(255, 238, 0, 1) 32%, rgba(2, 129, 33, 1) 51%, rgba(2, 129, 33, 1) 51%, rgba(0, 76, 255, 1) 72%, rgba(118, 0, 136, 1) 91%);
+    }
+
+    /* changer la grosseur de l'élargissement de l'élément after du choix */
+    .choix:hover::after {
+        transform: scale(1.5);
+    }
+
+    /********** ZONE DE FIN DE QUIZ *********/
+    /* changer la couleur du bouton */
+    .rejouer {
+        background-color: var(--jaune);
+    }
+}
+
+
+/****************************************ANIMATIONS*************************************/
+/* animation de changement de couleur pour le titre */
+@keyframes intro {
+
+    0% {
+        color: white;
+        text-shadow: -0.5rem 0 10px var(--rose);
+    }
+
+    10% {
+        color: var(--rose);
+        ;
+    }
+
+    20% {
+        color: var(--bleu-pale)
+    }
+
+    30% {
+        color: #613915;
+        text-shadow: none
+    }
+
+    40% {
+        color: black;
+    }
+
+    50% {
+        color: var(--rouge);
+    }
+
+    60% {
+        color: var(--orange);
+    }
+
+    70% {
+        color: var(--jaune);
+    }
+
+    80% {
+        color: var(--vert);
+    }
+
+    90% {
+        color: var(--bleu-fonce);
+    }
+
+    100% {
+        color: var(--mauve);
+    }
+
+}
+
+/* animation de déplacement et de grossissement pour le titre */
+@keyframes deplacement {
+    0% {
+        translate: -100vw;
+        scale: 0;
+    }
+
+    75% {
+        translate: 0 25vh;
+        scale: 1.6;
+    }
+
+    100% {
+
+        scale: 1;
+    }
+
+}
+
+/* animer une translation de bas en haut pour la bonne réponse */
+@keyframes bonne-reponse {
+    0% {
+        translate: 0 50px;
+    }
+
+    25% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 50px;
+    }
+
+    75% {
+        translate: 0 0;
+    }
+
+    100% {
+        translate: 0 50px;
+    }
+
+}
+
+/* animer une translation de droite à gauche */
+@keyframes mauvaise-reponse {
+    0% {
+        translate: 50px;
+    }
+
+    25% {
+        translate: 0;
+    }
+
+    50% {
+        translate: 50px;
+    }
+
+    75% {
+        translate: 0;
+    }
+
+    100% {
+        translate: 50px;
+    }
+}
+
+/* animer l'arrière-plan de la zone de fin du quiz en changeant sa position sur l'Axe des X*/
+@keyframes couleurs-fond {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
